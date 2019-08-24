@@ -1,5 +1,5 @@
 from flask import Flask
-
+from app.models.book import db
 
 # 注册app
 def create_app():
@@ -9,6 +9,10 @@ def create_app():
 
     # 加载蓝图
     register_blueprint(app)
+
+    # sql
+    db.init_app(app)
+    db.create_all(app=app)
 
     return app
 
